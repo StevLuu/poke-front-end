@@ -1,5 +1,5 @@
 // // import logo from './logo.svg';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes, BrowserRouter } from 'react-router-dom';
 import './App.css';
 import PokeContainer from './PokeContainer/PokeContainer';
 import UserComponent from './UserComponent/LoginComponent/login';
@@ -7,6 +7,8 @@ import UserComponent from './UserComponent/LoginComponent/login';
 import HomeComponent from './UserComponent/HomeComponent/home';
 import SecretComponent from './UserComponent/SecretComponent/secret';
 import LoginComponent from './UserComponent/LoginComponent/login'
+import RegisterComponent from './UserComponent/RegisterComponent/registerComponent';
+
 
 function App() {
   return (
@@ -14,17 +16,13 @@ function App() {
       <h1>PokeDèx</h1>
       <div>
         <ul>
-          <li><HomeComponent> </HomeComponent></li>
-          {/* <li><Link to="http://localhost:3001/users/home">Home</Link></li> */}
-          {/* <li><Link to="http://localhost:3001/users/secret">Secret</Link></li> */}
+          {/* <li><a href="http://localhost:3001/users/home">Home</a></li>
+          <li><a href="http://localhost:3001/users/secret">Secret</a></li> */}
+          <PokeContainer></PokeContainer>
+          {/* <LoginComponent></LoginComponent> */}
+          {/* <RegisterComponent></RegisterComponent> */}
         </ul>
-        {/* <Routes>
-          <Route path="/" exact component={HomeComponent} />
-          <Route path="/users/secret" component={SecretComponent} />
-        </Routes> */}
       </div>
-
-      <LoginComponent></LoginComponent>
     </div>
   );
 }

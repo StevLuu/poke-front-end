@@ -7,17 +7,18 @@ export default class Login extends Component {
       password: ''
     };
   }
-  handleInputChange = (event) => {
-    const { value, name } = event.target;
+  handleInputChange = (e) => {
+    // const { value, name } = e.target;
     this.setState({
-      [name]: value
+        [e.target.name]: e.target.value
     });
-  }
+}
 
   onSubmit = (event) => {
     event.preventDefault();
     fetch('http://localhost:3001/users/authenticate', {
       method: 'POST',
+      credentials: 'same-origin',
       body: JSON.stringify(this.state),
       headers: {
         'Content-Type': 'application/json'
@@ -25,7 +26,8 @@ export default class Login extends Component {
     })
       .then(res => {
         if (res.status === 200) {
-          this.props.history.push('/');
+          console.log("status 200")
+          // this.props.history.push('/');
         } else {
           const error = new Error(res.error);
           throw error;
@@ -59,6 +61,7 @@ export default class Login extends Component {
         />
         <input type="submit" value="Submit" />
       </form>
+
     );
   }
 }
