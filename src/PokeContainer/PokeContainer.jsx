@@ -11,7 +11,7 @@ const PokeContainer = () => {
 
     const createNewPoke = async (newPoke) => {
         //send request to back-end
-        const apiResponse = await fetch("http://localhost:3001/pokes", {
+        const apiResponse = await fetch("https://poke-backend-app.herokuapp.com/pokes", {
             method: "POST",
             body: JSON.stringify(newPoke),
             headers: {
@@ -35,7 +35,7 @@ const PokeContainer = () => {
     const deletePoke = async (idToDelete) => {
         //idToDelete == pokeId
         try {
-            const apiResponse = await fetch(`http://localhost:3001/pokes/${idToDelete}`, {
+            const apiResponse = await fetch(`https://poke-backend-app.herokuapp.com/pokes/${idToDelete}`, {
                 method: "DELETE"
             })
             const parsedResponse = await apiResponse.json()
@@ -55,7 +55,7 @@ const PokeContainer = () => {
     }
     const displayPokes = async (pokeArr) => {
         try {
-            const pokes = await fetch("http://localhost:3001/pokes")
+            const pokes = await fetch("https://poke-backend-app.herokuapp.com/pokes")
             const parsedPokes = await pokes.json()
             setPokes(parsedPokes.data)
 
@@ -66,7 +66,7 @@ const PokeContainer = () => {
     }
     const updatePoke = async (idToUpdate, pokeToUpdate) => {
 
-        const apiResponse = await fetch(`http://localhost:3001/pokes/${idToUpdate}`, {
+        const apiResponse = await fetch(`https://poke-backend-app.herokuapp.com/pokes/${idToUpdate}`, {
             method: 'PUT',
             body: JSON.stringify(pokeToUpdate),
             headers: {
