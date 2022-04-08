@@ -30,7 +30,7 @@ const SinglePcPokeComponent = (props) => {
                         <h6>{props.poke._id}</h6>
                         <form onSubmit={submitUpdatePoke}>
                             {isValidState.valid ? null : <p className='form-error'>{isValidState.message}</p>}
-                            <input minLength={2} onChange={handleInputChange} type="text" name="name" value={props.poke.name} />
+                            <input minLength={2} onChange={handleInputChange} type="text" name="name" value={props.poke.name}/>
                             <button type="submit">Change</button>
 
                             <button onClick={() => {

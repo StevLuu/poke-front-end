@@ -7,7 +7,8 @@ import SinglePcPokeComponent from './SinglePcPokeComponent/singlePcPokeComponent
 const PcComponent = (props) => {
     const [pcShowing, pcSetShowing] = useState(false)
     const pcToggleShowing = () => { pcSetShowing(!pcShowing) }
-    props.displayPokes()
+    // props.displayPokes()
+    useEffect(props.displayPokes,[])
     return (
         <div className="global-pc">
             <h1>This is the Global Pokedex</h1>

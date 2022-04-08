@@ -1,5 +1,6 @@
 //index page
 import { useEffect, useState } from 'react'
+import apiUrl from '../api-config'
 import PcComponent from '../PcComponent/pcComponent'
 import NewPokeComponent from './NewPokeComponent/newPokeComponent'
 import RollNewPokeComponent from './RollNewPokeComponent/rollNewPokeComponent'
@@ -11,7 +12,7 @@ const PokeContainer = () => {
 
     const createNewPoke = async (newPoke) => {
         //send request to back-end
-        const apiResponse = await fetch("https://poke-backend-app.herokuapp.com/pokes", {
+        const apiResponse = await fetch(`${apiUrl}/pokes`, {
             method: "POST",
             body: JSON.stringify(newPoke),
             headers: {
@@ -35,14 +36,14 @@ const PokeContainer = () => {
     const deletePoke = async (idToDelete) => {
         //idToDelete == pokeId
         try {
-            const apiResponse = await fetch(`https://poke-backend-app.herokuapp.com/pokes/${idToDelete}`, {
+            const apiResponse = await fetch(`${apiUrl}/pokes/${idToDelete}`, {
                 method: "DELETE"
             })
             const parsedResponse = await apiResponse.json()
             if (parsedResponse.success) {
                 console.log("deleting poke ID\n" + idToDelete)
-                // const newPokes = pokes.filter(poke => poke._id !== idToDelete)
-                // setPokes(newPokes)
+                const newPokes = pokes.filter(poke => poke._id !== idToDelete)
+                setPokes(newPokes)
             } else {
                 //TODO: handle an unsuccessful delete
             }
@@ -55,7 +56,7 @@ const PokeContainer = () => {
     }
     const displayPokes = async (pokeArr) => {
         try {
-            const pokes = await fetch("https://poke-backend-app.herokuapp.com/pokes")
+            const pokes = await fetch(`${apiUrl}/pokes`)
             const parsedPokes = await pokes.json()
             setPokes(parsedPokes.data)
 
@@ -66,7 +67,7 @@ const PokeContainer = () => {
     }
     const updatePoke = async (idToUpdate, pokeToUpdate) => {
 
-        const apiResponse = await fetch(`https://poke-backend-app.herokuapp.com/pokes/${idToUpdate}`, {
+        const apiResponse = await fetch(`${apiUrl}/pokes/${idToUpdate}`, {
             method: 'PUT',
             body: JSON.stringify(pokeToUpdate),
             headers: {
